@@ -8,10 +8,15 @@ services:
       - "443:443"
     links:
       - root
+      - colab
     environment:
-      DOMAINS: "industrial360utec.com -> http://root:8080"
+      DOMAINS: "industrial360utec.com -> http://root:8080, colaboratorio.industrial360utec.com -> http://colab:8080"
       STAGE: "production"
   root:
     image: bregymr/redirect
     environment:
       REDIRECT_URL: https://www.notion.so/colaboratorioutec/INGENIER-A-INDUSTRIAL-2d551d72763f4447bad3356b1f86188e
+  colab:
+    image: bregymr/redirect
+    environment:
+      REDIRECT_URL: https://www.notion.so/COLABORATORIO-UTEC-da1558601b864c46b8596d1346f2605a
