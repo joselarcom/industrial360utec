@@ -13,6 +13,14 @@ services:
     environment:
       DOMAINS: "industrial360utec.com -> http://root:8080, colaboratorio.industrial360utec.com -> http://colab:8080, lotsizing.industrial360utec.com -> http://lotsizing:8080"
       STAGE: "production"
+  monitor:
+    image: grafana/grafana
+    ports:
+      - "3000:3000"
+    links:
+      - root
+      - colab
+      - lotsizing
   root:
     image: bregymr/redirect
     environment:
