@@ -19,7 +19,7 @@ services:
     image: prom/prometheus
     volumes:
       - "./prometheus.yaml:/etc/prometheus/prometheus.yml"
-      - "./data:/etc/prometheus/data"
+      - "./data:/data"
     links: [root, colab, lotsizing]
 
   root:
