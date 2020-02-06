@@ -4,4 +4,4 @@ This repository saves a simple Dockerfile to generate a conatiner to deploy a si
 REDIRECT_URL= https://www.notion.so/colaboratorioutec/INGENIER-A-INDUSTRIAL-2d551d72763f4447bad3356b1f86188e
 ```
 
-remote -> dokku@minsky.cc
+deploy using `docker-composer up -d`
