@@ -9,8 +9,9 @@ services:
     links:
       - root
       - colab
+      - lotsizing
     environment:
-      DOMAINS: "industrial360utec.com -> http://root:8080, colaboratorio.industrial360utec.com -> http://colab:8080"
+      DOMAINS: "industrial360utec.com -> http://root:8080, colaboratorio.industrial360utec.com -> http://colab:8080, lotsizing.industrial360utec.com -> http://lotsizing:8080"
       STAGE: "production"
   root:
     image: bregymr/redirect
@@ -20,3 +21,7 @@ services:
     image: bregymr/redirect
     environment:
       REDIRECT_URL: https://www.notion.so/COLABORATORIO-UTEC-da1558601b864c46b8596d1346f2605a
+  lotsizing:
+    image: bregymr/redirect
+    environment:
+      REDIRECT_URL: https://www.notion.so/colaboratorioutec/Lotsizing-8a55c61618a94ed795856589b67404d4
