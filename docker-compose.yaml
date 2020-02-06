@@ -1,10 +1,17 @@
 version: "3"
 
 services:
-  root:
-    image: "bregymr/redirect"
+  portal:
+    image: steveltn/https-portal:1
+    ports:
+      - "80:80"
+      - "443:443"
+    links:
+      - root
     environment:
-      - REDIRECT_URL=https://www.notion.so/colaboratorioutec/INGENIER-A-INDUSTRIAL-2d551d72763f4447bad3356b1f86188e
-      - REDIRECT_CODE=302
-      - ROUTE=/
-      - PORT=8080
+      DOMAINS: "industrial360utec.com -> http://root:8080"
+      STAGE: "production"
+  root:
+    image: bregymr/redirect
+    environment:
+      REDIRECT_URL: https://www.notion.so/colaboratorioutec/INGENIER-A-INDUSTRIAL-2d551d72763f4447bad3356b1f86188e
