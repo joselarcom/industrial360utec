@@ -14,14 +14,15 @@ services:
   monitor:
     image: grafana/grafana
     links: [prometheus]
+    volumes:
+      - "grafana-storage:/var/lib/grafana"
 
   prometheus:
     image: prom/prometheus
+    links: [root, colab, lotsizing]
     volumes:
       - "./prometheus.yaml:/etc/prometheus/prometheus.yml"
       - "./data:/prometheus"
-    links: [root, colab, lotsizing]
-
   root:
     image: bregymr/redirect
     environment:
@@ -34,3 +35,5 @@ services:
     image: bregymr/redirect
     environment:
       REDIRECT_URL: https://www.notion.so/colaboratorioutec/Lotsizing-8a55c61618a94ed795856589b67404d4
+volumes:
+  grafana-storage:
