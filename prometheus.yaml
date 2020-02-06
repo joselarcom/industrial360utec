@@ -1,0 +1,18 @@
+scrape_configs:
+  - job_name: "root"
+    scrape_interval: 5s
+    metrics_path: /
+    static_configs:
+      - targets: ["root:8000"]
+
+  - job_name: "colab"
+    scrape_interval: 5s
+    metrics_path: /
+    static_configs:
+      - targets: ["colab:8000"]
+
+  - job_name: "lotsizing"
+    scrape_interval: 5s
+    metrics_path: /
+    static_configs:
+      - targets: ["lotsizing:8000"]

@@ -6,21 +6,22 @@ services:
     ports:
       - "80:80"
       - "443:443"
-    links:
-      - root
-      - colab
-      - lotsizing
+    links: [root, colab, lotsizing, monitor]
     environment:
-      DOMAINS: "industrial360utec.com -> http://root:8080, colaboratorio.industrial360utec.com -> http://colab:8080, lotsizing.industrial360utec.com -> http://lotsizing:8080"
+      DOMAINS: "industrial360utec.com -> http://root:8080, colaboratorio.industrial360utec.com -> http://colab:8080, lotsizing.industrial360utec.com -> http://lotsizing:8080, monitor.industrial360utec.com -> http://monitor:3000"
       STAGE: "production"
+
   monitor:
     image: grafana/grafana
-    ports:
-      - "3000:3000"
-    links:
-      - root
-      - colab
-      - lotsizing
+    links: [prometheus]
+
+  prometheus:
+    image: prom/prometheus
+    volumes:
+      - "./prometheus.yaml:/etc/prometheus/prometheus.yml"
+      - "./data:/etc/prometheus/data"
+    links: [root, colab, lotsizing]
+
   root:
     image: bregymr/redirect
     environment:
